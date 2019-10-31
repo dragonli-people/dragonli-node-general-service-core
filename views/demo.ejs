@@ -19,7 +19,8 @@
             var response = await axios.get(
                 `http://${address}:${port}/ajax/test`,{headers,withCredentials:true});
             console.log('=====',response.data.num,response);
-            document.getElementById('resultComp').value = response.data.num;
+            var data = response.data;
+            document.getElementById('resultComp').value = `random num: ${data.num} \n last update time: ${data.time} \n a value be injected variables when app start: ${data.initValue}` ;
         })();
     }
     </script>
