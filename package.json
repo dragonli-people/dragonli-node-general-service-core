@@ -1,0 +1,20 @@
+{
+  "name": "dragonli-node-general-service-core",
+  "version": "0.9.0",
+  "description": "node web service base on express. support q request url by one line config and a async functio",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --use-strict --harmony ./app"
+  },
+  "keywords": [
+    "node",
+    "web Service",
+    "framework"
+  ],
+  "author": "dragonli-people",
+  "license": "Apache License 2.0",
+  "dependencies": {
+    "dragonli-node-tools": "^0.9.0",
+    "dragonli-node-service-core": "^0.9.0"
+  }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index page</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script language="JavaScript">
+    function ajaxRequest(){
+        var address = document.getElementById('ipDom').value;
+        var port = document.getElementById('portDom').value;
+        axios.defaults.withCredentials = true;
+        // axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+        var headers = {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type':'application/json;charset=UTF-8',
+            'Accept': 'application/json',
+        };
+        (async function () {
+            var response = await axios.get(
+                `http://${address}:${port}/ajax/test`,{headers,withCredentials:true});
+            console.log('=====',response.data.num,response);
+            document.getElementById('resultComp').value = response.data.num;
+        })();
+    }
+    </script>
+</head>
+<body>
+
+    <%=msg%><br/>
+    please open this page with url http://127.0.0.1:<%=port%>  .and visit<br/>
+    In any case, make this page host different from the ajax request host that can test cross domain processing<br/>
+    <input id="portDom" type="hidden" value="<%=port%>"/>
+    <input id="ipDom" type="text" style="width: 500px;" placeholder="please input Intranet address to here"/>
+    <input type="button" value="ajax request" onclick="ajaxRequest()"/><br/>
+    <textarea id="resultComp" style="width: 500px;height: 300px;"></textarea>
+
+
+</body>
+</html>
