@@ -4,6 +4,7 @@ const AppConfig =  require('./configs/AppConfig');
 const HttpPortConfig =  require('./configs/HttpPortConfig');
 const TelnetCommandConfig =  require('./configs/TelnetCommandConfig');
 const CorsFilter =  require('./filters/CorsFilter');
+const AppInitRedisHandler =  require('./appinithandlers/AppInitRedisHandler');
 
 module.exports = {
     AppConfig,
@@ -13,4 +14,5 @@ module.exports = {
     HttpPortConfig,
     TelnetCommandConfig,
     CorsFilter,
+    AppInitRedisHandler,
 }
