@@ -17,5 +17,6 @@ module.exports = class  {
         if(!host || !port)return;
         var redisHandler = await RedisHandlerFactory.create(host,port);
         DATA_POOL[this.varName] = redisHandler;
+        console.log(` === auto init RedisHandler:[${this.varName}] started done === `);
     }
 }
