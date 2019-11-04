@@ -1,6 +1,6 @@
 
 
-module.exports = async function (controller, request,response,app) {
+module.exports = async function (controller,context,controllerIocKeys, request, response, config, app) {
 
 
 
