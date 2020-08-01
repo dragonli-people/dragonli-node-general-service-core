@@ -42,6 +42,8 @@ process.env.HTTP_PORT = port;
 process.env.TELNET_COMMAND_PORT=30002;
 //just for test.
 config.setViewFolder('views');
+config.setStaticFolder('public','/static');
+
 config.addRoutesConfig(routerConf);
 config.addTaskConfig(taskConf);
 config.addAppInitConfigHandlers([exampleInjectedVariables]);//Injected variables
