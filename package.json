@@ -14,8 +14,8 @@
   "author": "dragonli-people",
   "license": "Apache License 2.0",
   "dependencies": {
-    "dragonli-node-service-core": "^0.9.11",
-    "dragonli-node-tools": "^0.9.11",
+    "dragonli-node-service-core": "0.9.11",
+    "dragonli-node-tools": "0.9.11",
     "uuid": "^8.3.0"
   }
 }
