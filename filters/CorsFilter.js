@@ -2,7 +2,7 @@
 
 module.exports = async function (controller,context,controllerIocKeys, request, response, config, app) {
 
-
+    // http://www.0x55aa.com/%E7%AE%97%E6%B3%95-%E7%BC%96%E7%A8%8B/1774.html
 
     var host =  request.headers.origin;
     response.header('Access-Control-Allow-Origin', host);
