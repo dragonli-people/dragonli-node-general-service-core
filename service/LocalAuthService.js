@@ -12,7 +12,7 @@ module.exports = class  {
     generateSign(uniqueId,uid,code,time,privateKey){ return Crypto.sha1(this.signOrigin(uniqueId,uid,code,time,privateKey)) };
 
     async validateAndRefresh(authDto, refreshTime, autoGenerate, privateKey,timeout) {
-        if (!authDto.uniqueId || !(authDto.uid = parseInt(authDto.uid) || authDto.uid < 0)
+        if (!authDto.uniqueId || isNaN(authDto.uid = parseInt(authDto.uid)) || authDto.uid < 0
             || !(authDto.time = parseInt(authDto.time)) || !authDto.sign) return null;
         privateKey = privateKey || this.privateKey
         timeout = timeout || this.timeout;
