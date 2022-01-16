@@ -2,17 +2,22 @@ const {Crypto} = require('dragonli-node-tools');
 const UUID  = require('uuid');
 
 module.exports = class  {
-    constructor(privateKey,timeout){
+    constructor(privateKey,timeout,suffixHandler){
         this.privateKey = privateKey;
         this.timeout = timeout || 315360000000;
+        this.suffixHandler = suffixHandler;
     }
 
-    generateUniqueId(uid){return uid ? `U-${uid}` : `G-${UUID.v1()}`}
+    generateUniqueId(uid,request){
+        const suffix = this.suffixHandler && this.suffixHandler(request) || '';
+        const id = uid ? `U-${uid}` : `G-${UUID.v1()}`
+        return [id,suffix].join('-')
+    }
     signOrigin(uniqueId,uid,code,time,privateKey){ return `${uniqueId}|${uid}|${code}|${time}|${privateKey}` };
     generateSign(uniqueId,uid,code,time,privateKey){ return Crypto.sha1(this.signOrigin(uniqueId,uid,code,time,privateKey)) };
 
     async validateAndRefresh(authDto, refreshTime, autoGenerate, privateKey,timeout) {
-        if (!authDto.uniqueId || isNaN(authDto.uid = parseInt(authDto.uid)) || authDto.uid < 0
+        if (!authDto.uniqueId || !authDto.uid
             || !(authDto.time = parseInt(authDto.time)) || !authDto.sign) return null;
         privateKey = privateKey || this.privateKey
         timeout = timeout || this.timeout;
@@ -29,10 +34,10 @@ module.exports = class  {
         return null;
     }
 
-    generate(uniqueId, uid,code, privateKey) {
+    generate(uniqueId, uid,code, privateKey,request) {
         code = code || '';
         privateKey = privateKey || this.privateKey;
-        uniqueId = uniqueId || this.generateUniqueId(uid) ;
+        uniqueId = uniqueId || this.generateUniqueId(uid,request) ;
         var time = Date.now(),authDto = {uniqueId,uid,code,time},sign = this.generateSign(uniqueId,uid,code,time,privateKey);
         authDto.sign = sign;
         return authDto
